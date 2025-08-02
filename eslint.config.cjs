@@ -1,10 +1,8 @@
 const tsPlugin = require('@typescript-eslint/eslint-plugin');
 const prettierPlugin = require('eslint-plugin-prettier');
 const importPlugin = require('eslint-plugin-import');
-const baseConfig = require('eslint/conf/eslint-recommended');
 
 module.exports = [
-  baseConfig,
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -67,6 +65,6 @@ module.exports = [
         },
       ],
     },
-    ignorePatterns: ['dist/', 'node_modules/', '*.config.js', '*.config.cjs', '*.config.mjs'],
+    ignores: ['dist/**', 'node_modules/**', '*.config.js', '*.config.cjs', '*.config.mjs'],
   },
 ];
