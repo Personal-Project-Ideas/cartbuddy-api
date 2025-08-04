@@ -15,5 +15,6 @@ module.exports = {
   ],
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix'],
+
   skipQuestions: ['breaking', 'footer']
 };
