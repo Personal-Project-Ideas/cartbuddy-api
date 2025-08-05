@@ -39,6 +39,31 @@ Planned future enhancements:
 
 ---
 
+🏗️ Architecture and Folder Structure
+This project follows the Ports and Adapters (Hexagonal) architecture to maintain separation of concerns, scalability, and testability. The layers are organized as:
+
+```plaintext
+src/
+├── domain/                   # Pure business entities and value objects
+│   ├── entities/
+│   └── value-objects/
+│
+├── application/              # Use cases orchestrating business logic
+│
+├── ports/                    # Interfaces defining system boundaries (Ports)
+│   ├── inbound/              # Inbound ports (e.g., controller interfaces)
+│   └── outbound/             # Outbound ports (e.g., repository interfaces)
+│
+├── adapters/                 # Implementations of ports (Adapters)
+│   ├── inbound/              # Inbound adapters (e.g., HTTP controllers)
+│   ├── outbound/             # Outbound adapters (e.g., MongoDB repositories)
+│   └── messaging/            # Messaging adapters (e.g., SNS, queues)
+│
+├── shared/                   # Shared utilities, helpers, constants
+│
+└── main.ts                   # Application entry point
+```
+
 ## 🚧 Project Status
 
 This project is under active development. The initial version (V1) focuses on basic features with no authentication, but it is structured for future scalability.
