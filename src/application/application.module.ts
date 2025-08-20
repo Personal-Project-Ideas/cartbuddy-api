@@ -9,4 +9,6 @@ import { CreateListUseCaseImpl } from './use-cases/create-list-use-case';
   providers: [{ provide: CreateListUseCase, useClass: CreateListUseCaseImpl }],
   exports: [CreateListUseCase],
 })
-export class ApplicationModule {}
+export class ApplicationModule {
+  // empty
+}

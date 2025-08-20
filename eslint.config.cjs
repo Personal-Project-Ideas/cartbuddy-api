@@ -73,6 +73,13 @@ module.exports = [
         },
       ],
     },
+
     ignores: ['dist/**', 'node_modules/**', '*.config.js', '*.config.cjs', '*.config.mjs'],
+  },
+  {
+    files: ['**/*.module.ts'],
+    rules: {
+      '@typescript-eslint/no-extraneous-class': 'off',
+    },
   },
 ];
