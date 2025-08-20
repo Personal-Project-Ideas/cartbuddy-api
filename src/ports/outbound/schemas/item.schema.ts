@@ -1,12 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type ItemDocument = Item & Document;
-
 @Schema()
 export class Item {
   @Prop({ required: true })
   item: string;
 }
 
-export const ItemSchema = SchemaFactory.createForClass(Item);
+export const itemSchema = SchemaFactory.createForClass(Item);
+export type ItemDocument = Item & Document;

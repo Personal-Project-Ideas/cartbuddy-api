@@ -1,15 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { v4 as uuidV4 } from 'uuid';
 
-import { Item, ItemSchema } from './item.schema';
+import { Item, itemSchema } from './item.schema';
 
 @Schema({ timestamps: true })
 export class ShoppingList {
   @Prop({ default: () => uuidV4(), unique: true })
   key: string;
 
-  @Prop({ type: [ItemSchema], default: [] })
+  @Prop({ type: [itemSchema], default: [] })
   items: Item[];
 }
 
-export const ShoppingListSchema = SchemaFactory.createForClass(ShoppingList);
+export const shoppingListSchema = SchemaFactory.createForClass(ShoppingList);
+export type ShoppingListocument = ShoppingList & Document;

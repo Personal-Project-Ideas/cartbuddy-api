@@ -25,7 +25,7 @@
         "src/application/*"
       ],
       "@config/*": [
-        "src/config/*"
+        "src/infra/*"
       ],
       "@domain/*": [
         "src/domain/*"
