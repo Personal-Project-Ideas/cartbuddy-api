@@ -1,6 +1,7 @@
 const tsPlugin = require('@typescript-eslint/eslint-plugin');
 const prettierPlugin = require('eslint-plugin-prettier');
 const importPlugin = require('eslint-plugin-import');
+const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 
 module.exports = [
   {
@@ -16,6 +17,7 @@ module.exports = [
       '@typescript-eslint': tsPlugin,
       prettier: prettierPlugin,
       import: importPlugin,
+      'unused-imports': unusedImportsPlugin,
     },
     rules: {
       'prettier/prettier': 'error',
@@ -23,6 +25,7 @@ module.exports = [
       'no-var': 'error',
       'no-eval': 'error',
       'no-await-in-loop': 'warn',
+      'no-empty': ['warn', { allowEmptyCatch: true }],
       '@typescript-eslint/require-await': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -48,6 +51,11 @@ module.exports = [
           'newlines-between': 'always',
         },
       ],
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/naming-convention': [
         'warn',
         {
@@ -65,6 +73,13 @@ module.exports = [
         },
       ],
     },
+
     ignores: ['dist/**', 'node_modules/**', '*.config.js', '*.config.cjs', '*.config.mjs'],
+  },
+  {
+    files: ['**/*.module.ts'],
+    rules: {
+      '@typescript-eslint/no-extraneous-class': 'off',
+    },
   },
 ];

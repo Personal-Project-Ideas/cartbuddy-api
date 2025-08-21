@@ -16,7 +16,27 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@adapters/*": [
+        "src/adapters/*"
+      ],
+      "@application/*": [
+        "src/application/*"
+      ],
+      "@config/*": [
+        "src/infra/*"
+      ],
+      "@domain/*": [
+        "src/domain/*"
+      ],
+      "@ports/*": [
+        "src/ports/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
