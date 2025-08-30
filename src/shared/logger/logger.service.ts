@@ -1,43 +1,38 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-
+import { getRequestId } from '@config/context/request-context';
 import { Injectable } from '@nestjs/common';
 import pino, { Logger } from 'pino';
 
 @Injectable()
-export class AppLogger {
+export class LoggerService {
   private readonly logger: Logger;
-  private context?: string;
 
   constructor() {
     this.logger = pino({
-      transport: {
-        target: 'pino-pretty',
-        options: { colorize: true, translateTime: true },
-      },
+      transport: { target: 'pino-pretty' },
+      timestamp: pino.stdTimeFunctions.isoTime,
     });
   }
 
-  setContext(context: string) {
-    this.context = context;
-  }
-
-  private formatMessage(message: string) {
-    return this.context != null ? `[${this.context}] ${message}` : message;
+  private buildLogObject(obj?: unknown) {
+    return {
+      requestId: getRequestId(),
+      ...(typeof obj === 'object' && obj !== null ? obj : {}),
+    };
   }
 
   info(message: string, obj?: unknown) {
-    this.logger.info(obj || {}, this.formatMessage(message));
+    this.logger.info(this.buildLogObject(obj), message);
   }
 
   error(message: string, obj?: unknown) {
-    this.logger.error(obj || {}, this.formatMessage(message));
+    this.logger.error(this.buildLogObject(obj), message);
   }
 
   warn(message: string, obj?: unknown) {
-    this.logger.warn(obj || {}, this.formatMessage(message));
+    this.logger.warn(this.buildLogObject(obj), message);
   }
 
   debug(message: string, obj?: unknown) {
-    this.logger.debug(obj || {}, this.formatMessage(message));
+    this.logger.debug(this.buildLogObject(obj), message);
   }
 }
