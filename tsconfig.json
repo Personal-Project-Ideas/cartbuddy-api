@@ -35,6 +35,9 @@
       ],
       "@shared/*": [
         "src/shared/*"
+      ],
+      "@mocks/*": [
+        "test/mocks/*"
       ]
     }
   },
