@@ -1,4 +1,6 @@
 {
+  "forceExit": true,
+  "detectOpenHandles": true,
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
@@ -12,7 +14,8 @@
     "^@domain/(.*)$": "<rootDir>/src/domain/$1",
     "^@application/(.*)$": "<rootDir>/src/application/$1",
     "^@ports/(.*)$": "<rootDir>/src/ports/$1",
-    "^@shared/(.*)$": "<rootDir>/src/shared/$1"
+    "^@shared/(.*)$": "<rootDir>/src/shared/$1",
+    "^@mocks/(.*)$": "<rootDir>/test/mocks/$1"
   },
   "testPathIgnorePatterns": ["/node_modules/", "/dist/"]
 }
