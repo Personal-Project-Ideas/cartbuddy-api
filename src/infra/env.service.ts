@@ -1,4 +1,3 @@
-// src/config/load-env.service.ts
 import { config as dotenvConfig } from 'dotenv';
 
 import { IEnvVariables } from './interfaces/env-variables';
