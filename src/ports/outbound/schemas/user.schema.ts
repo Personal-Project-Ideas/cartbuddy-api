@@ -1,19 +1,23 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ShoppingList } from '@domain/entities';
+import { Document } from 'mongoose';
 
-import { shoppingListSchema } from './shopping-list.schema';
+import {
+  ShoppingListDocument,
+  shoppingListSchema,
+} from './shopping-list.schema';
 
 @Schema({ timestamps: true })
-export class User {
+export class UserDocument extends Document {
   @Prop({ required: true })
   name: string;
+
   @Prop({ required: true, unique: true })
   username: string;
 
   @Prop({ required: true, type: [shoppingListSchema], default: [] })
-  shoppingLists: ShoppingList[];
+  shoppingLists?: ShoppingListDocument[];
 }
 
-export const userSchema = SchemaFactory.createForClass(User);
+export const userSchema = SchemaFactory.createForClass(UserDocument);
 
-export type UserDocument = User & Document;
+export type UserDocumentType = UserDocument;

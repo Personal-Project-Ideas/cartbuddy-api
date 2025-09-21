@@ -8,10 +8,12 @@ import { Model } from 'mongoose';
 @Injectable()
 export class UserRepository implements IUserRepositoryPort {
   constructor(
-    @InjectModel(User.name) private readonly _userModel: Model<UserDocument>,
+    @InjectModel(UserDocument.name)
+    private readonly _userModel: Model<UserDocument>,
   ) {
     //empty
   }
+
   async create(user: User): Promise<User> {
     throw new Error('Not implemented');
   }

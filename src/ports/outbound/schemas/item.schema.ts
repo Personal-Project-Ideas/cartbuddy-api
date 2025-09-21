@@ -4,7 +4,13 @@ import { Document } from 'mongoose';
 @Schema()
 export class Item {
   @Prop({ required: true })
-  item: string;
+  name: string;
+
+  @Prop({ required: true })
+  price: number;
+
+  @Prop()
+  description?: string;
 }
 
 export const itemSchema = SchemaFactory.createForClass(Item);
