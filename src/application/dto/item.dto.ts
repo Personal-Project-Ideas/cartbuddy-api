@@ -1,5 +1,9 @@
-import { IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 export class ItemDto {
   @IsString()
-  item: string;
+  name!: string;
+  @IsNumber()
+  price!: number;
+  @IsString()
+  description?: string;
 }
