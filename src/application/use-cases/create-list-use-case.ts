@@ -24,6 +24,10 @@ export class CreateListUseCase implements ICreateListPort {
   }
   async execute(data: ItemDto[], username: string): Promise<ShoppingList> {
     try {
+      this._logger.debug(`${this.constructor.name}.execute.call`, {
+        username,
+        data,
+      });
       // const user = await this._userRepo.find(username);
 
       // if (!user) {
@@ -35,6 +39,11 @@ export class CreateListUseCase implements ICreateListPort {
 
       const shoppingList = new ShoppingList(items);
       const result = await this._shoppingListRepo.create(shoppingList);
+
+      this._logger.debug(`${this.constructor.name}.execute.result`, {
+        username,
+        data,
+      });
 
       return result;
     } catch (error: unknown) {

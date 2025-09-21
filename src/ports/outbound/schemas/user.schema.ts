@@ -1,10 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-import {
-  ShoppingListDocument,
-  shoppingListSchema,
-} from './shopping-list.schema';
+import { shoppingListSchema } from './shopping-list.schema';
 
 @Schema({ timestamps: true })
 export class UserDocument extends Document {
@@ -15,7 +12,7 @@ export class UserDocument extends Document {
   username: string;
 
   @Prop({ required: true, type: [shoppingListSchema], default: [] })
-  shoppingLists?: ShoppingListDocument[];
+  shoppingLists?: string[];
 }
 
 export const userSchema = SchemaFactory.createForClass(UserDocument);
