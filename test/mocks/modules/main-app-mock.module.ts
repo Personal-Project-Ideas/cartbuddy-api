@@ -6,7 +6,7 @@ import { LoggerService } from '@shared/logger/logger.service';
 
 export const createAppTestModule = async (): Promise<TestingModule> => {
   const testModule = Test.createTestingModule({
-    imports: [MongoInMemoryModule],
+    imports: [MongoInMemoryModule.forRoot()],
     providers: [CreateListUseCase],
   });
 

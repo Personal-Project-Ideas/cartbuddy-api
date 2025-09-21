@@ -1,5 +1,5 @@
 import { CreateListUseCase } from '@application/use-cases/create-list-use-case';
-import { createAppTestModule } from '@mocks/modules/application-mock.module';
+import { createAppTestModule } from '@mocks/modules/main-app-mock.module';
 import { TestingModule } from '@nestjs/testing';
 
 describe('CreateListUseCase', () => {
@@ -9,10 +9,6 @@ describe('CreateListUseCase', () => {
   beforeAll(async () => {
     moduleRef = await createAppTestModule();
     useCase = moduleRef.get(CreateListUseCase);
-  });
-
-  afterAll(async () => {
-    await moduleRef.close();
   });
 
   it('should return error cause its not implemented', async () => {

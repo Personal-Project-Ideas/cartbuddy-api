@@ -1,36 +1,32 @@
-import { UserRepository } from '@adapters/outbound/repositories/user-repository.adapter';
-import { ShoppingList, User } from '@domain/entities';
-import { Module, OnApplicationShutdown } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import { UserRepository } from '@adapters/outbound/repositories/user-repository.adapter';
+import { ShoppingList } from '@domain/entities';
 import { userRepository } from '@ports/outbound/repositories/user-repository.port';
 import { shoppingListSchema } from '@ports/outbound/schemas/shopping-list.schema';
-import { userSchema } from '@ports/outbound/schemas/user.schema';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { User, userSchema } from '@ports/outbound/schemas/user.schema';
 
-@Module({
-  imports: [
-    MongooseModule.forRootAsync({
-      useFactory: async () => {
-        const mongod = await MongoMemoryServer.create();
-        MongoInMemoryModule.mongod = mongod;
-        return { uri: mongod.getUri() };
-      },
-    }),
-    MongooseModule.forFeature([
-      { name: User.name, schema: userSchema },
-      { name: ShoppingList.name, schema: shoppingListSchema },
-    ]),
-  ],
-  providers: [{ provide: userRepository, useClass: UserRepository }],
-  exports: [userRepository],
-})
-export class MongoInMemoryModule implements OnApplicationShutdown {
-  static mongod: MongoMemoryServer;
+@Module({})
+export class MongoInMemoryModule {
+  static async forRoot(): Promise<DynamicModule> {
+    const mongod = await MongoMemoryServer.create();
+    const uri = mongod.getUri();
 
-  async onApplicationShutdown(_signal?: string) {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (MongoInMemoryModule.mongod) {
-      await MongoInMemoryModule.mongod.stop();
-    }
+    return {
+      module: MongoInMemoryModule,
+      imports: [
+        MongooseModule.forRoot(uri),
+        MongooseModule.forFeature([
+          { name: User.name, schema: userSchema },
+          { name: ShoppingList.name, schema: shoppingListSchema },
+        ]),
+      ],
+      providers: [
+        { provide: userRepository, useClass: UserRepository },
+        { provide: MongoMemoryServer, useValue: mongod },
+      ],
+      exports: [userRepository, MongoMemoryServer],
+    };
   }
 }

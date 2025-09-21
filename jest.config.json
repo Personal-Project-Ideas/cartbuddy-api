@@ -4,7 +4,7 @@
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
-  "testRegex": "(/test/.*|(\\.|/)(spec|test))\\.ts$",
+  "testRegex": "(/test/unit/.*|(\\.|/)(spec|test))\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
@@ -15,7 +15,10 @@
     "^@application/(.*)$": "<rootDir>/src/application/$1",
     "^@ports/(.*)$": "<rootDir>/src/ports/$1",
     "^@shared/(.*)$": "<rootDir>/src/shared/$1",
-    "^@mocks/(.*)$": "<rootDir>/test/mocks/$1"
+    "^@mocks/(.*)$": "<rootDir>/test/mocks/$1",
+    "^@bdd/(.*)$": "<rootDir>/test/bdd/$1",
+    "^@rest/controller/(.*)$": "<rootDir>/src/rest/controllers/$1",
+    "^@rest/middleware/(.*)$": "<rootDir>/src/rest/middlewares/$1"
   },
   "testPathIgnorePatterns": ["/node_modules/", "/dist/"]
 }
