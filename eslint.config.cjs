@@ -38,7 +38,6 @@ module.exports = [
       '@typescript-eslint/no-unsafe-call': 'warn',
       '@typescript-eslint/no-unsafe-member-access': 'warn',
       '@typescript-eslint/return-await': 'error',
-      '@typescript-eslint/no-extraneous-class': 'warn',
       'comma-dangle': ['error', 'always-multiline'],
       'object-curly-spacing': ['error', 'always'],
       'max-lines': ['warn', { max: 500, skipBlankLines: true, skipComments: true }],

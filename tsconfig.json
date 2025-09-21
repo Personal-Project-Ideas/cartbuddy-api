@@ -35,6 +35,21 @@
       ],
       "@shared/*": [
         "src/shared/*"
+      ],
+      "@mocks/*": [
+        "test/mocks/*"
+      ],
+      "@bdd/*": [
+        "test/bdd/*"
+      ],
+      "@test/*": [
+        "test/*"
+      ],
+      "@rest/controller/*": [
+        "src/rest/controllers/*"
+      ],
+      "@rest/middleware/*": [
+        "src/rest/middlewares/*"
       ]
     }
   },
