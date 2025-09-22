@@ -19,6 +19,9 @@ export class ShoppingListRepository implements IShoppingListRepositoryPort {
   async create(list: ShoppingList): Promise<ShoppingList> {
     this._logger.debug(`${this.constructor.name}.create.call`, { list });
     try {
+      if (list.items.length === 0) {
+        throw new Error('list can not be empty');
+      }
       const createdList = await this._shoppingListModel.create(list);
 
       const entity = ShoppingListMapper.toEntity(createdList);
@@ -36,9 +39,11 @@ export class ShoppingListRepository implements IShoppingListRepositoryPort {
   }
 
   async findByKey(key: string): Promise<ShoppingList | null> {
-    this._logger.debug(`${this.constructor.name}.findByKey.call`, { key });
+    this._logger.debug(`${this.constructor.name}.findByKey.call`, {
+      key: String(key),
+    });
     try {
-      const foundList = await this._shoppingListModel.findById(key);
+      const foundList = await this._shoppingListModel.findOne({ key });
 
       const list = foundList ? ShoppingListMapper.toEntity(foundList) : null;
 
