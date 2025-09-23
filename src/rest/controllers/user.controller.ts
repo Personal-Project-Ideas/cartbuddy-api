@@ -8,7 +8,7 @@ import {
 import { LoggerService } from '@shared/logger/logger.service';
 import { Request } from 'express';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly _logger: LoggerService) {
     this._logger.info(this.constructor.name);

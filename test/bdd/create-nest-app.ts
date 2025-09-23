@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { ApplicationModule } from '@application/application.module';
 import { ApplicationTestModule } from '@mocks/application-test.module';
+import { ApplicationModule } from '@application/application.module';
 
 import { AppModule } from '../../src/app.module';
 
